@@ -61,6 +61,31 @@
   @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink;
 }
 
+@property --count {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes v-count-up {
+  from {
+    --count: 0;
+  }
+}
+
+@utility v-count {
+  counter-reset: count var(--count);
+
+  &::before {
+    content: counter(count);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: --count 450ms ease-out;
+    animation: v-count-up 450ms ease-out;
+  }
+}
+
 @layer base {
   :root {
     color-scheme: light;

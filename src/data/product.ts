@@ -1,3 +1,5 @@
+import thumbnail from "@/assets/image-product-1-thumbnail.webp";
+
 export const product = {
   id: "fall-limited-edition-sneakers",
   company: "Sneaker Company",
@@ -6,4 +8,9 @@ export const product = {
     "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
   price: 125,
   originalPrice: 250,
+  thumbnail,
 };
+
+export function findProduct(id: string) {
+  return id === product.id ? product : undefined;
+}

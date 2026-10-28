@@ -1,10 +1,11 @@
+import { CartProvider } from "@/components/cart";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vite-plus/test";
 import SiteHeader from "./site-header";
 
 describe("SiteHeader", () => {
   it("links the logo home under the store's name", () => {
-    render(<SiteHeader />);
+    render(<SiteHeader />, { wrapper: CartProvider });
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(
@@ -13,7 +14,7 @@ describe("SiteHeader", () => {
   });
 
   it("offers the menu, the cart and the account", () => {
-    render(<SiteHeader />);
+    render(<SiteHeader />, { wrapper: CartProvider });
 
     expect(screen.getByRole("button", { name: "Menu" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Cart" })).toBeInTheDocument();
