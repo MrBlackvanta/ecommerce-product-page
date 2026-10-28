@@ -1,5 +1,6 @@
 import { product } from "@/data";
 import { installMatchMedia, setMediaMatch } from "@/test/media";
+import { paintLargestContent } from "@/test/paint";
 import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vite-plus/test";
@@ -44,7 +45,7 @@ describe("ProductGallery", () => {
     expect(within(slide).getByRole("img")).toHaveAccessibleName(photos[0].alt);
   });
 
-  it("fetches every photo once the page has loaded, before any click", () => {
+  it("fetches every photo once the main photo has painted, before any click", async () => {
     const requested: string[] = [];
     HTMLImageElement.prototype.decode = function (this: HTMLImageElement) {
       requested.push(this.srcset);
@@ -52,7 +53,10 @@ describe("ProductGallery", () => {
     };
 
     renderGallery();
+    await act(async () => {});
+    expect(requested).toEqual([]);
 
+    await act(async () => paintLargestContent());
     expect(requested).toEqual(photos.map(photoSrcSet));
   });
 
