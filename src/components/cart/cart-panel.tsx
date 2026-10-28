@@ -47,7 +47,7 @@ export default function CartPanel({ id, open }: CartPanelProps) {
               {items.map(({ id: lineId, quantity, product }) => (
                 <li key={lineId} className="flex items-center gap-4">
                   <img
-                    src={product.thumbnail.src}
+                    src={product.photos[0].thumbnail.src}
                     alt=""
                     width={50}
                     height={50}

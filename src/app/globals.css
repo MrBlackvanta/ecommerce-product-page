@@ -58,7 +58,7 @@
 }
 
 @utility v-focus {
-  @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink;
+  @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--focus-ring);
 }
 
 @property --count {
@@ -90,9 +90,20 @@
   :root {
     color-scheme: light;
     overflow-y: scroll;
+    --focus-ring: var(--color-ink);
   }
 
   button:not(:disabled) {
     @apply cursor-pointer;
+  }
+
+  ::view-transition {
+    pointer-events: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 300ms;
+    animation-timing-function: var(--default-transition-timing-function);
   }
 }

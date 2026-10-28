@@ -10,7 +10,7 @@ export default function PreviousIcon(props: React.SVGProps<SVGSVGElement>) {
       aria-hidden="true"
       {...props}
     >
-      <path d="M11 1 3 9l8 8" />
+      <path d="M11 1 3 9l8 8" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }

@@ -10,7 +10,7 @@ export default function NextIcon(props: React.SVGProps<SVGSVGElement>) {
       aria-hidden="true"
       {...props}
     >
-      <path d="m2 1 8 8-8 8" />
+      <path d="m2 1 8 8-8 8" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
