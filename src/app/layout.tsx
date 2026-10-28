@@ -19,7 +19,7 @@ const shareImage = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "sneakers: the Fall Limited Edition product page, its photo gallery beside the price and add-to-cart controls.",
+  alt: "sneakers: the Fall Limited Edition product page, its photo above the price and add-to-cart controls.",
 };
 
 export const metadata: Metadata = {
