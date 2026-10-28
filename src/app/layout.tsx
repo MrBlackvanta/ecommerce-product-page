@@ -1,4 +1,4 @@
-import { Signature } from "@/components/layout";
+import { Signature, SiteHeader } from "@/components/layout";
 import { SITE_NAME, SITE_URL } from "@/data";
 import type { Metadata, Viewport } from "next";
 import { Kumbh_Sans } from "next/font/google";
@@ -55,7 +55,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${kumbhSans.variable} antialiased`}>
-      <body className="relative min-h-dvh">
+      <body className="relative min-h-dvh text-ink">
+        <SiteHeader />
         {children}
         <Signature />
       </body>

@@ -53,11 +53,18 @@
   --text-badge: 0.625rem;
   --text-badge--line-height: 1;
   --text-badge--font-weight: 700;
+
+  --default-transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@utility v-focus {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink;
 }
 
 @layer base {
   :root {
     color-scheme: light;
+    overflow-y: scroll;
   }
 
   button:not(:disabled) {

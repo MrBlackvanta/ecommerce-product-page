@@ -74,6 +74,10 @@ export default defineConfig({
     },
     overrides: [
       {
+        files: ["src/components/layout/mobile-menu.tsx"],
+        rules: { "jsx-a11y/prefer-tag-over-role": "off" },
+      },
+      {
         files: ["**/*.test.{ts,tsx}"],
         rules: { "nextjs/no-html-link-for-pages": "off" },
       },
