@@ -1,5 +1,5 @@
 import { product, type ProductPhoto } from "@/data";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { crossFade } from "./cross-fade";
 
 export const PAGE_PHOTO_SIZES =
@@ -17,10 +17,24 @@ async function decode(photo: ProductPhoto) {
   await image.decode().catch(() => undefined);
 }
 
+function warmPhotos() {
+  for (const photo of product.photos) void decode(photo);
+}
+
 export function usePhotoIndex() {
   const { photos } = product;
   const [index, setIndex] = useState(0);
   const target = useRef(0);
+
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      warmPhotos();
+      return;
+    }
+
+    window.addEventListener("load", warmPhotos, { once: true });
+    return () => window.removeEventListener("load", warmPhotos);
+  }, []);
 
   const select = (next: number) => {
     if (next === target.current) return;

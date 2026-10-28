@@ -4,6 +4,7 @@ import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vite-plus/test";
 import ProductGallery from "./product-gallery";
+import { photoSrcSet } from "./use-photo-index";
 
 const { photos } = product;
 const DESKTOP = "(min-width: 64rem)";
@@ -41,6 +42,18 @@ describe("ProductGallery", () => {
 
     const slide = within(carousel).getByRole("figure", { name: "1 of 4" });
     expect(within(slide).getByRole("img")).toHaveAccessibleName(photos[0].alt);
+  });
+
+  it("fetches every photo once the page has loaded, before any click", () => {
+    const requested: string[] = [];
+    HTMLImageElement.prototype.decode = function (this: HTMLImageElement) {
+      requested.push(this.srcset);
+      return Promise.resolve();
+    };
+
+    renderGallery();
+
+    expect(requested).toEqual(photos.map(photoSrcSet));
   });
 
   it("steps through the photos and wraps at both ends", async () => {
