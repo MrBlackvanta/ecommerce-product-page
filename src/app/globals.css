@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@source not "../../*.md";
+@source not "../**/*.test.ts";
+@source not "../**/*.test.tsx";
+@source not "../test";
+
+@theme {
+  --font-sans: var(--font-kumbh-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  button:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
