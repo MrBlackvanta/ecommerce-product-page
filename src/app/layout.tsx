@@ -1,3 +1,4 @@
+import { CartProvider } from "@/components/cart";
 import { Signature, SiteHeader } from "@/components/layout";
 import { SITE_NAME, SITE_URL } from "@/data";
 import type { Metadata, Viewport } from "next";
@@ -56,8 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${kumbhSans.variable} antialiased`}>
       <body className="relative min-h-dvh text-ink">
-        <SiteHeader />
-        {children}
+        <CartProvider>
+          <SiteHeader />
+          {children}
+        </CartProvider>
         <Signature />
       </body>
     </html>
